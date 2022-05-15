@@ -1,0 +1,40 @@
+$txt-color-light: white
+$card-bg-color: darkcyan
+$nav-bg-color: black
+$btn-bg-color: darkblue
+
+@mixin display-center
+  display: flex
+  justify-content: center
+  align-items: center
+
+nav
+  @include display-center
+  background-color: $nav-bg-color
+  color: $txt-color-light
+  text-align: center
+  height: 4rem
+
+.btns
+  @include display-center
+  margin: 1%
+
+button
+  border-radius: 10px
+  background: $btn-bg-color
+  color: $txt-color-light
+  font-size: larger
+
+.display-area
+  display: grid
+  grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr
+
+.ship
+  @include display-center
+  flex-direction: column
+  background-color: $card-bg-color
+  color: $txt-color-light
+  margin: 15%
+  padding: 10%
+  border-radius: 3%
+  text-align: center
