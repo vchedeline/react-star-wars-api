@@ -1,40 +1,51 @@
+@use "sass:map"
+
+$bg-colors: ("nav": black, "card": darkcyan, "btn": orange)
+
 $txt-color-light: white
-$card-bg-color: darkcyan
-$nav-bg-color: black
-$btn-bg-color: darkblue
 
 @mixin display-center
   display: flex
   justify-content: center
   align-items: center
 
+@mixin customizing-color($obj, $txt)
+  background-color: map.get($bg-colors, $obj)
+  color: $txt
+
+@mixin show-details($show: false) 
+  @if $show
+    @include display-center
+    flex-direction: column
+
 nav
   @include display-center
-  background-color: $nav-bg-color
-  color: $txt-color-light
+  @include customizing-color("nav", $txt-color-light)
   text-align: center
   height: 4rem
 
 .btns
   @include display-center
   margin: 1%
-
-button
-  border-radius: 10px
-  background: $btn-bg-color
-  color: $txt-color-light
-  font-size: larger
+  button
+    border-radius: 10px
+    @include customizing-color("btn", $txt-color-light)
+    font-size: larger
 
 .display-area
   display: grid
   grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr
-
-.ship
-  @include display-center
-  flex-direction: column
-  background-color: $card-bg-color
-  color: $txt-color-light
-  margin: 15%
-  padding: 10%
-  border-radius: 3%
-  text-align: center
+  .ship
+    @include display-center
+    flex-direction: column
+    @include customizing-color("card", $txt-color-light)
+    margin: 15%
+    padding: 10%
+    border-radius: 3%
+    text-align: center
+    &:hover
+      .details
+        @include show-details($show: true)
+  .details
+    display: none
+  
