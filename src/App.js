@@ -8,8 +8,7 @@ export default function App() {
   const getStarships = async (currentPage) => {
     try {
       console.log("Fetching Data");
-      const response = await fetch(currentPage);
-      const data = await response.json();
+      const data = await (await fetch(currentPage)).json();
       setStarship(data);
     } catch (err) {
       console.log(err);
@@ -29,14 +28,14 @@ export default function App() {
             if (!starship.previous) return;
             getStarships(starship.previous);
           }}>
-          Previous
+          PREVIOUS
         </button>
         <button
           onClick={() => {
             if (!starship.next) return;
             getStarships(starship.next);
           }}>
-          Next
+          NEXT
         </button>
       </div>
       <div className="display-area">

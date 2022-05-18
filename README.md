@@ -1,3 +1,7 @@
+# StarWars React
+
+> Using Star Wars API to display all ships
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

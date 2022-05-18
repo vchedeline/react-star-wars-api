@@ -1,51 +1,78 @@
 @use "sass:map"
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@1,300&family=Odibee+Sans&family=Permanent+Marker&display=swap')
 
-$bg-colors: ("nav": black, "card": darkcyan, "btn": orange)
-
+$bg-colors: ("nav": black, "card": #55519b, "btn": transparent)
 $txt-color-light: white
+$txt-fonts: ("content": "Jost", "title": "Odibee Sans", "header": "Permanent Marker")
 
 @mixin display-center
   display: flex
   justify-content: center
   align-items: center
 
-@mixin customizing-color($obj, $txt)
+@mixin customizing-style($obj, $txt, $font)
   background-color: map.get($bg-colors, $obj)
   color: $txt
+  font-family: map.get($txt-fonts, $font)
 
 @mixin show-details($show: false) 
   @if $show
     @include display-center
     flex-direction: column
 
+.App
+  background-image: url("https://media.giphy.com/media/sJvz8Qnfly3BOuotGx/giphy-downsized-large.gif")
+  background-repeat: no-repeat
+  background-position: center
+  background-size: cover
+
 nav
   @include display-center
-  @include customizing-color("nav", $txt-color-light)
+  @include customizing-style("nav", $txt-color-light, "title")
   text-align: center
-  height: 4rem
+  font-size: 4em
+  height: 6rem
 
 .btns
-  @include display-center
+  display: flex
+  justify-content: space-around
   margin: 1%
   button
     border-radius: 10px
-    @include customizing-color("btn", $txt-color-light)
-    font-size: larger
+    @include customizing-style("btn", $txt-color-light, "content")
+    font-size: 2em
+    padding:0px 2em 0px 2em
+    &:hover
+      cursor: pointer
+      border: none
+      box-shadow: 5px 5px 10px #55519b inset, 5px 5px 10px #55519b
+      transition-duration: 0.4s
 
 .display-area
+  background-color: rgba(0, 0, 0, .7)
   display: grid
-  grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr
+  grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr 1fr
   .ship
     @include display-center
     flex-direction: column
-    @include customizing-color("card", $txt-color-light)
-    margin: 15%
-    padding: 10%
+    @include customizing-style("card", $txt-color-light, "content")
+    margin: 10%
+    padding: 5%
     border-radius: 3%
     text-align: center
+    font-size: x-large
+    height: 17rem
     &:hover
+      font-size: x-large
+      cursor: pointer
       .details
         @include show-details($show: true)
   .details
     display: none
+    font-size: medium
+
+// @media (max-width: 900)
+//     .display-area
+//       display: grid
+//       grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr 1fr
   
